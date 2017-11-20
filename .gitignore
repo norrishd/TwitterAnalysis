@@ -1,2 +1,5 @@
 # Secret keys and whatnot
 credentials.txt
+
+# Spyder config file
+.spyproject

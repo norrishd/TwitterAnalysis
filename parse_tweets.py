@@ -1,8 +1,8 @@
-# Import the necessary package to process data in JSON format
-try:
-    import json
-except ImportError:
-    import simplejson as json
+"""Extract relevant features from a pre-generated file of Tweets."""
+
+# Note to self: in Python 3, plain json library is as good as simplejson:
+# http://artem.krylysov.com/blog/2015/09/29/benchmark-python-json-libraries/
+import json
 
 # We use the file saved from last step as example
 tweets_filename = input('Enter name of saved tweet file.\n')
