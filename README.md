@@ -14,7 +14,7 @@ https://pypi.python.org/pypi/twitter
 twitter_search.py takes a search query, optional additional arguments, and
 retrieves relevant tweets using the Twitter Search API. Note the API
 [rate limits](https://developer.twitter.com/en/docs/basics/rate-limits)
-and search [query protocols](https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators).
+and search functionality [query protocols](https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators).
 
 Optional arguments include:
 - count: # of tweets to retrieve (default = 15, max 100 per API call, but

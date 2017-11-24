@@ -112,10 +112,8 @@ def search_tweets(query, **kwargs):
     print('\nRemaining API calls for current time period: {} of {}'.format(lim['remaining'], lim['limit']))
 
 
-# Invoke function if called from console. Note I'm not sure this is robust
-print(len(sys.argv))
-print(sys.argv)
-if len(sys.argv) > 1:
+# Invoke function if called from console. Note I don't actually understand this
+if sys.stdout.isatty():
     parser = argparse.ArgumentParser(description='Scrape tweets for a given query.')
     parser.add_argument('query', help='The search query', type=str, default='happy')
     parser.add_argument('-l', '--lang', help='Restrict retrieved tweets to a given language', type=str)
@@ -127,12 +125,16 @@ if len(sys.argv) > 1:
     parser.add_argument('-i', '--include_entities', help='Whether to include entities node', type=str, choices=['true', 'false'])
     parser.add_argument('-f', '--file', help='File name to write the results to.', type=str)
     parser.add_argument('-e', '--exact', help='Only retrieve exact query matches', action='store_true')
+
     args = parser.parse_args()
+    dict_args = vars(args)
     
     # Convert args to a dictionary
     kwargs = {}
-    for key, value in vars(args).items():
-        if value != None:
+    query = dict_args.pop('query')
+    
+    for key, value in dict_args.items():
+        if value != None:                
             kwargs[key] = value
     
-    search_tweets(**kwargs)
+    search_tweets(query, **kwargs)
