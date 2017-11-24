@@ -3,3 +3,7 @@ credentials.txt
 
 # Spyder config file
 .spyproject
+
+# Jupyter Notebook files
+__pycache__*
+.ipynb_checkpoints/

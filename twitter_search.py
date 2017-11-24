@@ -113,6 +113,8 @@ def search_tweets(query, **kwargs):
 
 
 # Invoke function if called from console. Note I'm not sure this is robust
+print(len(sys.argv))
+print(sys.argv)
 if len(sys.argv) > 1:
     parser = argparse.ArgumentParser(description='Scrape tweets for a given query.')
     parser.add_argument('query', help='The search query', type=str, default='happy')
