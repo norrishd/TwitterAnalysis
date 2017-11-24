@@ -79,6 +79,7 @@ def search_tweets(query, **kwargs):
     # Save tweets to .bz2 file
     output = bz2.BZ2File(filename, 'w')
     tweets_parsed = 0
+    tweets_parsed_last_round = None
     max_id = float('inf')
     print('Retrieving tweets for query {}...'.format(query))
     # BZ2 needs strings to be encoded, so use TextWrapper
@@ -88,6 +89,7 @@ def search_tweets(query, **kwargs):
             if tweets_parsed > 0:
                 print('Total tweets parsed: {}'.format(tweets_parsed))
             to_retrieve = min(extra_to_retrieve, 100)
+            tweets_parsed_last_round = tweets_parsed
             
             # Retrieve tweets by calling the Twitter search API            
             tweets = twitter.search.tweets(q=query, count=to_retrieve, **kwargs)
@@ -101,6 +103,8 @@ def search_tweets(query, **kwargs):
                     kwargs['max_id'] = max_id
                 extra_to_retrieve -= 1
                 tweets_parsed += 1
+            if tweets_parsed == tweets_parsed_last_round:
+                extra_to_retrieve = 0    # no new tweets being returned
             kwargs['max_id'] -= 1    # decrement to avoid including threshold tweet twice
         
     output.close()
